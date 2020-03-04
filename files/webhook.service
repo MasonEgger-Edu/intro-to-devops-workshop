@@ -1,0 +1,13 @@
+[Unit]
+Description=Webhook for Github
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/bin/webhook -nopanic -cert /etc/letsencrypt/live/YOUR_FQDN/fullchain.pem -key /etc/letsencrypt/live/YOUR_FQDN/privkey.pem -hooks /var/webhook/hooks.yaml -secure -verbose
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=webook
+
+[Install]
+WantedBy=multi-user.target
